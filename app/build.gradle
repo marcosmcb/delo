@@ -32,9 +32,6 @@ dependencies {
     // Add RecyclerView
     implementation 'com.android.support:recyclerview-v7:27.1.1'
 
-    // Add Card-View
-    implementation 'com.android.support:cardview-v7:27.1.1'
-
     //RxJava2
     api "io.reactivex.rxjava2:rxjava:2+"
     api 'io.reactivex.rxjava2:rxandroid:2+'
