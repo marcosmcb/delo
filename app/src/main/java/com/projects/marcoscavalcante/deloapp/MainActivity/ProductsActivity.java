@@ -1,4 +1,4 @@
-package com.projects.marcoscavalcante.deloapp.products;
+package com.projects.marcoscavalcante.deloapp.MainActivity;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -10,6 +10,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.projects.marcoscavalcante.deloapp.R;
+import com.projects.marcoscavalcante.deloapp.ProductFragment.ProductsPresenter;
+import com.projects.marcoscavalcante.deloapp.ProductFragment.ProductsView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

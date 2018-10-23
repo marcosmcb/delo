@@ -1,9 +1,9 @@
-package com.projects.marcoscavalcante.deloapp.products;
+package com.projects.marcoscavalcante.deloapp.ProductFragment;
 
 import android.util.Log;
 
-import com.projects.marcoscavalcante.deloapp.model.Product;
-import com.projects.marcoscavalcante.deloapp.remote.NetworkApi;
+import com.projects.marcoscavalcante.deloapp.Model.Product;
+import com.projects.marcoscavalcante.deloapp.Remote.NetworkApi;
 
 import java.util.List;
 

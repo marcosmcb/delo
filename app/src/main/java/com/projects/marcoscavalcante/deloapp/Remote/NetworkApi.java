@@ -1,4 +1,4 @@
-package com.projects.marcoscavalcante.deloapp.remote;
+package com.projects.marcoscavalcante.deloapp.Remote;
 
 
 import okhttp3.OkHttpClient;

@@ -1,4 +1,4 @@
-package com.projects.marcoscavalcante.deloapp.model;
+package com.projects.marcoscavalcante.deloapp.Model;
 
 public enum Category {
 

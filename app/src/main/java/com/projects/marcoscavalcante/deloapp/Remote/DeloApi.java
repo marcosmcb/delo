@@ -1,4 +1,4 @@
-package com.projects.marcoscavalcante.deloapp.remote;
+package com.projects.marcoscavalcante.deloapp.Remote;
 
 
 import java.util.List;
@@ -8,8 +8,8 @@ import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
-import com.projects.marcoscavalcante.deloapp.model.Cart;
-import com.projects.marcoscavalcante.deloapp.model.Product;
+import com.projects.marcoscavalcante.deloapp.Model.Cart;
+import com.projects.marcoscavalcante.deloapp.Model.Product;
 
 
 public interface DeloApi {

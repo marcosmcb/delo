@@ -1,4 +1,4 @@
-package com.projects.marcoscavalcante.deloapp.utils;
+package com.projects.marcoscavalcante.deloapp.Utils;
 
 
 import android.content.Context;
