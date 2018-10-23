@@ -11,13 +11,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.projects.marcoscavalcante.deloapp.CartFragment.CartFragment;
+import com.projects.marcoscavalcante.deloapp.FavouriteFragment.FavouriteFragment;
+import com.projects.marcoscavalcante.deloapp.ProductFragment.ProductFragment;
 import com.projects.marcoscavalcante.deloapp.R;
 import com.projects.marcoscavalcante.deloapp.Utils.BaseFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ProductsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -31,13 +35,13 @@ public class ProductsActivity extends AppCompatActivity implements NavigationVie
     @BindView(R.id.bn_products)
     BottomNavigationView mBottomNavigationView;
 
-    private static final String TAG = ProductsActivity.class.getName();
+    private static final String TAG = MainActivity.class.getName();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_products);
+        setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         setSupportActionBar(mToolbar);
 
@@ -109,15 +113,15 @@ public class ProductsActivity extends AppCompatActivity implements NavigationVie
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()){
                     case R.id.action_all_products:
-                        setFragment( null );
+                        setFragment( new ProductFragment() );
                         break;
 
                     case R.id.action_favourites:
-                        setFragment( null );
+                        setFragment( new FavouriteFragment() );
                         break;
 
                     case R.id.action_cart:
-                        setFragment( null );
+                        setFragment( new CartFragment() );
                         break;
                 }
 
