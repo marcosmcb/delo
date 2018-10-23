@@ -23,4 +23,12 @@
     <dimen name="rv_cart_margin">12dp</dimen>
 
 
+    <!-- PRODUCT ITEM -->
+    <dimen name="layout_product_margin">12dp</dimen>
+    <dimen name="layout_product_padding">6dp</dimen>
+    <dimen name="tv_margin">6dp</dimen>
+
+
+
+
 </resources>
