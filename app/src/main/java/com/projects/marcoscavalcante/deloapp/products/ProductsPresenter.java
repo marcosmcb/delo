@@ -1,6 +1,5 @@
-package com.projects.marcoscavalcante.deloapp.ui;
+package com.projects.marcoscavalcante.deloapp.products;
 
-import android.accounts.Account;
 import android.util.Log;
 
 import com.projects.marcoscavalcante.deloapp.model.Product;

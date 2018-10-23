@@ -3,35 +3,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
-        <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
-    </group>
-
-    <item android:title="Communicate">
+    <item android:title="@string/menu_subheader_men">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:id="@+id/nav_men_footwear"
+                android:icon="@drawable/ic_men_foot"
+                android:title="@string/menu_item_foot" />
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:id="@+id/nav_men_casualwear"
+                android:icon="@drawable/ic_men_casual"
+                android:title="@string/menu_item_casual" />
+            <item
+                android:id="@+id/nav_men_formalwear"
+                android:icon="@drawable/ic_men_formal"
+                android:title="@string/menu_item_formal" />
+        </menu>
+    </item>
+
+    <item android:title="@string/menu_subheader_women">
+        <menu>
+            <item
+                android:id="@+id/nav_women_footwear"
+                android:icon="@drawable/ic_women_foot"
+                android:title="@string/menu_item_foot" />
+            <item
+                android:id="@+id/nav_women_casualwear"
+                android:icon="@drawable/ic_women_casual"
+                android:title="@string/menu_item_casual" />
+            <item
+                android:id="@+id/nav_women_formalwear"
+                android:icon="@drawable/ic_women_formal"
+                android:title="@string/menu_item_formal" />
         </menu>
     </item>
 

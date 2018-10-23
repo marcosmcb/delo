@@ -14,10 +14,10 @@ import com.projects.marcoscavalcante.deloapp.model.Product;
 
 public interface DeloApi {
 
-    @GET("/products/{id}")
+    @GET("/menu/{id}")
     Observable<Product> getProductById(@Path("id") int id);
 
-    @GET("/products")
+    @GET("/menu")
     Observable<List<Product>> getProducts();
 
     @POST("/cart")

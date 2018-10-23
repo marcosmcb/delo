@@ -6,4 +6,28 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+
+
+    <!-- MENU -->
+    <string name="menu_sort_by_name">Name</string>
+    <string name="menu_sort_by_price">Price</string>
+
+
+    <!-- SEARCH VIEW -->
+    <string name="search_hint">Search...</string>
+
+    <!-- DRAWER -->
+    <string name="menu_subheader_men">MEN</string>
+    <string name="menu_subheader_women">WOMEN</string>
+    <string name="menu_item_casual">CASUALWEAR</string>
+    <string name="menu_item_formal">FORMALWEAR</string>
+    <string name="menu_item_foot">FOOTWEAR</string>
+
+
+    <!-- BOTTOM NAVIGATION MENU -->
+    <string name="bottom_menu_products">Products</string>
+    <string name="bottom_menu_favourites">Favourites</string>
+    <string name="bottom_menu_cart">Cart</string>
+
+
 </resources>
