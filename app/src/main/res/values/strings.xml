@@ -30,4 +30,9 @@
     <string name="bottom_menu_cart">Cart</string>
 
 
+    <!-- ERROR MESSAGES -->
+
+    <string name="error_fetch_products">Failed to get products, Please try again.</string>
+
+
 </resources>
