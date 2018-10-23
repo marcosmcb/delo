@@ -31,8 +31,12 @@
 
 
     <!-- ERROR MESSAGES -->
-
     <string name="error_fetch_products">Failed to get products, Please try again.</string>
+
+
+    <!-- BUTTONS -->
+    <string name="btn_add_cart">ADD TO CART</string>
+    <string name="btn_remove">REMOVE</string>
 
 
 </resources>

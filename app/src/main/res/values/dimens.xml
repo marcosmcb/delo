@@ -27,8 +27,17 @@
     <dimen name="layout_product_margin">12dp</dimen>
     <dimen name="layout_product_padding">6dp</dimen>
     <dimen name="tv_margin">6dp</dimen>
+    <dimen name="old_price">10sp</dimen>
+    <dimen name="new_price">14sp</dimen>
 
 
+    <!-- FAVOURITE ITEM -->
+    <dimen name="btn_height">40dp</dimen>
 
+    <!-- CART ITEM -->
+    <dimen name="img_cart">75dp</dimen>
+    <dimen name="btn_plus_minus_height_width">30dp</dimen>
+    <dimen name="btn_margin">5dp</dimen>
+    <dimen name="tv_quantity_height_width">25dp</dimen>
 
 </resources>
