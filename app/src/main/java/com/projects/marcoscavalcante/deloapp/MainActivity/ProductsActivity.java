@@ -1,6 +1,8 @@
 package com.projects.marcoscavalcante.deloapp.MainActivity;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -10,15 +12,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.projects.marcoscavalcante.deloapp.R;
-import com.projects.marcoscavalcante.deloapp.ProductFragment.ProductsPresenter;
-import com.projects.marcoscavalcante.deloapp.ProductFragment.ProductsView;
+import com.projects.marcoscavalcante.deloapp.Utils.BaseFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ProductsActivity extends AppCompatActivity
-        implements ProductsView,
-        NavigationView.OnNavigationItemSelectedListener {
+public class ProductsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -29,8 +28,10 @@ public class ProductsActivity extends AppCompatActivity
     @BindView(R.id.nav_view)
     NavigationView mNavigationView;
 
+    @BindView(R.id.bn_products)
+    BottomNavigationView mBottomNavigationView;
+
     private static final String TAG = ProductsActivity.class.getName();
-    private ProductsPresenter mProductsPresenter;
 
 
     @Override
@@ -41,20 +42,26 @@ public class ProductsActivity extends AppCompatActivity
         setSupportActionBar(mToolbar);
 
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, mDrawerLayout, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+
         mDrawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
         mNavigationView.setNavigationItemSelectedListener(this);
-        mProductsPresenter = new ProductsPresenter(this);
+        setBottomNavListener();
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 
 
     @Override
     protected void onResume() {
         super.onResume();
-        mProductsPresenter.onResume();
     }
 
     @Override
@@ -93,5 +100,38 @@ public class ProductsActivity extends AppCompatActivity
 
         mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+    private void setBottomNavListener() {
+        mBottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+                    case R.id.action_all_products:
+                        setFragment( null );
+                        break;
+
+                    case R.id.action_favourites:
+                        setFragment( null );
+                        break;
+
+                    case R.id.action_cart:
+                        setFragment( null );
+                        break;
+                }
+
+                return true;
+            }
+        });
+    }
+
+
+    public void setFragment(BaseFragment fragment) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .setCustomAnimations( R.animator.slide_in_left, R.animator.slide_out_right, 0, 0 )
+                .replace( R.id.frame_container, fragment )
+                .commit();
     }
 }
