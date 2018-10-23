@@ -1,7 +1,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/ll_item_product"
+    android:id="@+id/ll_item_favourite"
     android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -10,6 +10,7 @@
 
     <ImageView
         android:id="@+id/ivProduct"
+        android:src="@drawable/suede_blue_shoes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true" />
@@ -40,6 +41,7 @@
 
     </LinearLayout>
 
+
     <TextView
         android:id="@+id/tv_old_price"
         android:layout_width="wrap_content"
@@ -50,6 +52,25 @@
         android:textColor="@android:color/black"
         android:textStyle="bold"
         tools:text="£ 17.89" />
+
+
+    <Button
+        android:id="@+id/btn_checkout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:drawableLeft="@drawable/ic_cart_white"
+        android:backgroundTint="@color/colorAccent"
+        android:textColor="@color/colortTextOnGreen"
+        tools:text="ADD TO CART" />
+
+    <Button
+        android:id="@+id/btn_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:drawableLeft="@drawable/ic_cancel_green"
+        android:backgroundTint="@android:color/white"
+        android:textColor="@color/colorAccent"
+        tools:text="REMOVE"/>
 
 
 </LinearLayout>
