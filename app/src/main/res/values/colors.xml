@@ -6,4 +6,5 @@
 
     <color name="colorLayoutProductItem">#e4e4e4</color>
     <color name="colortTextOnGreen">#ffffff</color>
+    <color name="colorFavouriteRed">#d21535</color>
 </resources>

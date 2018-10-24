@@ -37,6 +37,7 @@
     <!-- BUTTONS -->
     <string name="btn_add_cart">ADD TO CART</string>
     <string name="btn_remove">REMOVE</string>
+    <string name="btn_add_fav">ADD TO FAVOURITE</string>
 
 
 </resources>
