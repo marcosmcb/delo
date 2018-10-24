@@ -13,6 +13,7 @@ public abstract class BaseFragment extends Fragment {
 
     protected View mRootView;
     protected abstract int getLayout();
+    private static final int NUM_COLUMNS = 2;
 
     @Nullable
     @Override
@@ -30,10 +31,10 @@ public abstract class BaseFragment extends Fragment {
         float scaleFactor = getResources().getDisplayMetrics().density * 100;
         int number =  displayMetrics.widthPixels;
 
-        int nColumns = (int) ( (float) number / scaleFactor ) / 2;
-        if (nColumns < 2) return 2; //to keep the grid aspect
+        int nColumns = (int) ( (float) number / scaleFactor ) / NUM_COLUMNS;
+        if (nColumns < NUM_COLUMNS) return NUM_COLUMNS; //to keep the grid aspect
 
-        if( nColumns > 2 && isBasket )  return 3;
+        if( nColumns > NUM_COLUMNS && isBasket )  return 3;
 
         return nColumns;
     }
