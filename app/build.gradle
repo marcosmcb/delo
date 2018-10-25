@@ -44,6 +44,9 @@ dependencies {
     // Add Interceptor
     api 'com.squareup.okhttp3:logging-interceptor:3.8.0'
 
+    // Add Picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
     // Add Butterknife
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'

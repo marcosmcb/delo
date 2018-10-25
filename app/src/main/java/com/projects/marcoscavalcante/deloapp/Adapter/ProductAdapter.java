@@ -1,7 +1,7 @@
 package com.projects.marcoscavalcante.deloapp.Adapter;
 
+import android.content.Context;
 import android.graphics.Paint;
-import android.graphics.Picture;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.projects.marcoscavalcante.deloapp.Model.Product;
 import com.projects.marcoscavalcante.deloapp.R;
 import com.projects.marcoscavalcante.deloapp.Utils.Pictures;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -50,6 +51,7 @@ public class ProductAdapter extends RecyclerView.Adapter< ProductAdapter.Product
 
         Log.d( TAG, "PRODUCT => " + mProduct.toString() );
 
+
         holder.mTvName.setText( mProduct.getName() );
         holder.mTvNewPrice.setText( "£ " + String.format( "%.2f", mProduct.getPrice() )  );
 
@@ -68,8 +70,10 @@ public class ProductAdapter extends RecyclerView.Adapter< ProductAdapter.Product
             }
         });
 
-        holder.mIvProduct.setBackgroundResource( Pictures.picturesUrl().get( mProduct.getProductId() ) );
-        //Picasso.with(context).load(R.drawable.start_button_pushed).into(imageView);
+        Picasso
+                .get()
+                .load( Pictures.picturesUrl().get( mProduct.getProductId() ) )
+                .into( holder.mIvProduct );
     }
 
     @Override
