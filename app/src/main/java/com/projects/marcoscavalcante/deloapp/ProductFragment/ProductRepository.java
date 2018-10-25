@@ -44,6 +44,7 @@ public class ProductRepository implements ProductsContract.Repository
         return new DisposableObserver<List<Product>>() {
             @Override
             public void onNext(List<Product> products) {
+                Log.d(TAG, "SIZE OF LIST " + products.size() );
                 onCallbackListener.onFinished( new ArrayList<>(products) );
             }
 

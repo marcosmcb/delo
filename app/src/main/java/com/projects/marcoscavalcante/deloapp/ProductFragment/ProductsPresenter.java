@@ -2,11 +2,8 @@ package com.projects.marcoscavalcante.deloapp.ProductFragment;
 
 
 import android.util.Log;
-
 import com.projects.marcoscavalcante.deloapp.Model.Product;
-
 import java.util.ArrayList;
-
 import retrofit2.HttpException;
 
 public class ProductsPresenter implements ProductsContract.Repository.OnFinishedListener {
@@ -20,7 +17,8 @@ public class ProductsPresenter implements ProductsContract.Repository.OnFinished
         this.mProduRepository = new ProductRepository();
     }
 
-    public void onResume(){
+
+    public void retrieveProducts(){
         if(mProductsView != null){
             mProductsView.showProgress();
             mProduRepository.getProductsArrayList(this);
@@ -60,6 +58,12 @@ public class ProductsPresenter implements ProductsContract.Repository.OnFinished
         Log.d( TAG, t.getMessage() );
     }
 
+
+    public void onItemClicked(Product product){
+        if(mProductsView != null){
+            mProductsView.displayProduct(product);
+        }
+    }
 
     public void onDestroy(){
         mProductsView = null;

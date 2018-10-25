@@ -127,4 +127,15 @@ public class Product implements Parcelable {
         dest.writeFloat(oldPrice);
         dest.writeInt(stock);
     }
+
+
+    @Override
+    public String toString() {
+        return "{ productId: " + productId +
+                ", name: " + name +
+                ", category: " + category +
+                ", price:" + price +
+                ", oldPrice:" + oldPrice +
+                ", stock: " + stock + "}";
+    }
 }

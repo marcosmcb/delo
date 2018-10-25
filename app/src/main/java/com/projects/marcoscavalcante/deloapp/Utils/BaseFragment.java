@@ -24,7 +24,7 @@ public abstract class BaseFragment extends Fragment {
         return mRootView;
     }
 
-    protected int getNumberOfColumns( boolean isBasket ) {
+    protected int getNumberOfColumns() {
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
 
@@ -32,9 +32,10 @@ public abstract class BaseFragment extends Fragment {
         int number =  displayMetrics.widthPixels;
 
         int nColumns = (int) ( (float) number / scaleFactor ) / NUM_COLUMNS;
-        if (nColumns < NUM_COLUMNS) return NUM_COLUMNS; //to keep the grid aspect
 
-        if( nColumns > NUM_COLUMNS && isBasket )  return 3;
+        if (nColumns < NUM_COLUMNS) {
+            return NUM_COLUMNS; //to keep the grid aspect
+        }
 
         return nColumns;
     }

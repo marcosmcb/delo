@@ -10,6 +10,7 @@ public interface ProductsContract {
         void hideProgress();
         void setProductsAdapter(ArrayList<Product> productArrayList);
         void showErrorMessage(String msg);
+        void displayProduct(Product product);
     }
 
 

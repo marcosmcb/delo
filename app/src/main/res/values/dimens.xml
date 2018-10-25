@@ -28,8 +28,9 @@
     <dimen name="layout_product_margin">12dp</dimen>
     <dimen name="layout_product_padding">6dp</dimen>
     <dimen name="tv_margin">6dp</dimen>
-    <dimen name="old_price">10sp</dimen>
+    <dimen name="old_price">14sp</dimen>
     <dimen name="new_price">14sp</dimen>
+    <dimen name="picture_size">200dp</dimen>
 
 
     <!-- FAVOURITE ITEM -->

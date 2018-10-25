@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ProgressBar;
 
 import com.projects.marcoscavalcante.deloapp.CartFragment.CartFragment;
 import com.projects.marcoscavalcante.deloapp.FavouriteFragment.FavouriteFragment;
@@ -35,6 +36,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @BindView(R.id.bn_products)
     BottomNavigationView mBottomNavigationView;
 
+    @BindView(R.id.pb_products_fragment)
+    ProgressBar mProgressBar;
+
     private static final String TAG = MainActivity.class.getName();
 
 
@@ -43,7 +47,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
         setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar,
@@ -54,6 +60,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         mNavigationView.setNavigationItemSelectedListener(this);
         setBottomNavListener();
+
+        setFragment( new ProductFragment() );
     }
 
 

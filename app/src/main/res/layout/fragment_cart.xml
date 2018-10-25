@@ -17,6 +17,5 @@
         android:layout_centerInParent="true" >
 
     </android.support.v7.widget.RecyclerView>
-    
-    
+
 </FrameLayout>
