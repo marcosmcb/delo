@@ -15,6 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.projects.marcoscavalcante.deloapp.Main.MainActivity;
+import com.projects.marcoscavalcante.deloapp.Model.Product;
 import com.projects.marcoscavalcante.deloapp.R;
 import com.projects.marcoscavalcante.deloapp.Utils.Pictures;
 import com.squareup.picasso.Picasso;
@@ -74,7 +76,6 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductD
         mPresenter.unwrapProduct( getIntent() );
 
         setListeners();
-
     }
 
 
@@ -143,13 +144,21 @@ public class ProductDetailActivity extends AppCompatActivity implements ProductD
         }
     }
 
+    @Override
+    public void addProduct(Product product) {
+        Intent mIntent = new Intent( this, MainActivity.class);
+        mIntent.putExtra(Intent.EXTRA_TEXT, product);
+        startActivity(mIntent);
+        finish();
+    }
+
 
     private void setListeners() {
 
         mButtonAddCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText( getApplicationContext(), "Added to Cart", Toast.LENGTH_SHORT).show();
+                mPresenter.addToCart();
             }
         });
 

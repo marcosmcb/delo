@@ -54,7 +54,6 @@ public class ProductDetailPresenter {
                     mSelection,
                     null,
                     FavouriteEntry.COLUMN_ID);
-
         }
         catch(Exception e)
         {
@@ -90,6 +89,18 @@ public class ProductDetailPresenter {
             mProductDetailView.showMessage("Product added to Favourites!");
         } else {
             mProductDetailView.showMessage("Product cannot be added :(");
+        }
+    }
+
+
+    public void addToCart(){
+        if(mProductDetailView != null){
+            if(mProduct.getStock() > 0){
+                mProductDetailView.showMessage("Product has been added to Cart!");
+                mProductDetailView.addProduct( mProduct );
+            } else {
+                mProductDetailView.showMessage("Sorry, Product is out of stock!");
+            }
         }
     }
 }

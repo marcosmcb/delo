@@ -1,6 +1,8 @@
 package com.projects.marcoscavalcante.deloapp.ProductDetailActivity;
 
 
+import com.projects.marcoscavalcante.deloapp.Model.Product;
+
 public interface ProductDetailContract {
 
     interface View{
@@ -13,5 +15,6 @@ public interface ProductDetailContract {
         void setActionBarTitle(String productName);
         void showMessage(String message);
         void setIsFavourite(boolean isFavourite);
+        void addProduct(Product product);
     }
 }

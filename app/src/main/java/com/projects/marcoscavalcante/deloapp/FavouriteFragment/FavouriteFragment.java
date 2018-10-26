@@ -1,5 +1,6 @@
 package com.projects.marcoscavalcante.deloapp.FavouriteFragment;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,6 +11,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.projects.marcoscavalcante.deloapp.Adapter.ProductFavouriteAdapter;
 import com.projects.marcoscavalcante.deloapp.Main.MainActivity;
@@ -57,7 +59,8 @@ public class FavouriteFragment extends BaseFragment implements LoaderManager.Loa
 
     @Override
     public void onProductAddedToCart(Product product) {
-
+        ((MainActivity) getActivity()).addProductToCart( product );
+        Toast.makeText(getContext(), getString(R.string.message_add_success), Toast.LENGTH_SHORT ).show();
     }
 
     @Override
@@ -66,8 +69,19 @@ public class FavouriteFragment extends BaseFragment implements LoaderManager.Loa
     }
 
     @Override
+    public void onError(String message) {
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
     public void showProgress() {
         mProgressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showRemoveSuccessful() {
+        Toast.makeText(getContext(), getString(R.string.message_remove_success), Toast.LENGTH_SHORT).show();
+        getLoaderManager().restartLoader(LOADER_ID, null, this).forceLoad();
     }
 
     @Override
@@ -101,6 +115,6 @@ public class FavouriteFragment extends BaseFragment implements LoaderManager.Loa
 
     @Override
     public void onLoaderReset(@NonNull Loader<Cursor> loader) {
-
+        //
     }
 }

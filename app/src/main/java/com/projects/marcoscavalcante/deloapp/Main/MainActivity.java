@@ -1,5 +1,6 @@
 package com.projects.marcoscavalcante.deloapp.Main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -11,12 +12,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.projects.marcoscavalcante.deloapp.CartFragment.CartFragment;
 import com.projects.marcoscavalcante.deloapp.FavouriteFragment.FavouriteFragment;
+import com.projects.marcoscavalcante.deloapp.Model.Product;
 import com.projects.marcoscavalcante.deloapp.ProductFragment.ProductFragment;
 import com.projects.marcoscavalcante.deloapp.R;
 import com.projects.marcoscavalcante.deloapp.Utils.BaseFragment;
@@ -24,7 +24,8 @@ import com.projects.marcoscavalcante.deloapp.Utils.BaseFragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements MainContract.View,
+        NavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private static final String TAG = MainActivity.class.getName();
     private ActionBarDrawerToggle mToggle;
     private BaseFragment mCurrentFragment;
+    private MainPresenter mPresenter;
 
 
     @Override
@@ -67,11 +69,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mNavigationView.setNavigationItemSelectedListener(this);
         setBottomNavListener();
 
+        if( mPresenter == null ){
+            mPresenter = new MainPresenter(this);
+        }
+
         mCurrentFragment = new ProductFragment();
         setFragment( mCurrentFragment );
+
+        checkForProduct( getIntent() );
     }
 
+    public void checkForProduct(Intent intent) {
+        if(intent != null && intent.getParcelableExtra(Intent.EXTRA_TEXT) != null) {
+            Product product = intent.getParcelableExtra(Intent.EXTRA_TEXT);
+            addProductToCart( product );
+        }
+    }
 
+    public void addProductToCart(Product product){
+        mPresenter.addProductToCart( product );
+    }
 
     public void setDrawableIndicator(boolean isEnabled){
         mToggle.setDrawerIndicatorEnabled(isEnabled);

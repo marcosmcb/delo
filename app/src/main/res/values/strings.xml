@@ -40,6 +40,8 @@
 
     <!-- MESSAGES -->
     <string name="message_out_of_stock">OUT OF STOCK</string>
+    <string name="message_remove_success">Product has been removed from Favourites!</string>
+    <string name="message_add_success">Product has been added to Cart!</string>
 
 
     <!-- PRODUCT DETAIL -->

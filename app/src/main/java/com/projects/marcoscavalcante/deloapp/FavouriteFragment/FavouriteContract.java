@@ -8,6 +8,7 @@ public interface FavouriteContract {
 
     interface View{
         void showProgress();
+        void showRemoveSuccessful();
         void hideProgress();
         void setProducts(ArrayList<Product> products);
     }

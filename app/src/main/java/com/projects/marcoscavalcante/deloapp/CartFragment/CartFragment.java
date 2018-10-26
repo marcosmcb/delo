@@ -32,6 +32,9 @@ public class CartFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind( CartFragment.this, mRootView );
         ( (MainActivity) getActivity()).setDrawableIndicator(false);
+
+
+
     }
 
     @Override

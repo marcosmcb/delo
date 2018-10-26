@@ -34,6 +34,7 @@ public class ProductFavouriteAdapter extends RecyclerView.Adapter<ProductFavouri
     public interface Listener{
         void onProductAddedToCart( Product product);
         void onProductRemoved(Product product);
+        void onError(String message);
     }
 
     @NonNull
@@ -63,7 +64,12 @@ public class ProductFavouriteAdapter extends RecyclerView.Adapter<ProductFavouri
         holder.mBtnAddCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mListener.onProductAddedToCart( mProduct );
+                if( mProduct.getStock() > 0 ){
+                    mListener.onProductAddedToCart( mProduct );
+                } else {
+                    mListener.onError("Sorry, Product is out of stock!");
+                }
+
             }
         });
 
