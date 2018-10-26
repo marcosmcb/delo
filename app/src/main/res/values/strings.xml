@@ -35,5 +35,8 @@
     <string name="btn_remove">REMOVE</string>
     <string name="btn_add_fav">ADD TO FAVOURITE</string>
 
+    <!-- MESSAGES -->
+    <string name="message_out_of_stock">OUT OF STOCK</string>
+
 
 </resources>
