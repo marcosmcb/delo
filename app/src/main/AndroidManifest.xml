@@ -26,6 +26,13 @@
         <activity
             android:name=".ProductDetailActivity.ProductDetailActivity"> </activity>
 
+
+
+        <provider
+            android:name=".Data.FavouriteProvider"
+            android:authorities="com.projects.marcoscavalcante.deloapp"
+            android:exported="false" />
+
     </application>
 
 </manifest>
