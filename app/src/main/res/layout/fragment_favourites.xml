@@ -9,14 +9,13 @@
         android:id="@+id/rv_favourite"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/rv_favourite_margin"
-        android:layout_marginRight="@dimen/rv_favourite_margin"
+        android:layout_marginLeft="@dimen/rv_products_margin"
+        android:layout_marginRight="@dimen/rv_products_margin"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:layout_centerInParent="true" >
+        android:layout_centerInParent="true"  >
 
     </android.support.v7.widget.RecyclerView>
-
 
 </FrameLayout>

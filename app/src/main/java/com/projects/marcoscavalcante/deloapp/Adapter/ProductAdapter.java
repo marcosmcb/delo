@@ -52,12 +52,8 @@ public class ProductAdapter extends RecyclerView.Adapter< ProductAdapter.Product
 
         Log.d( TAG, "PRODUCT => " + mProduct.toString() );
 
-
         holder.mTvName.setText( mProduct.getName() );
         holder.mTvNewPrice.setText( "£ " + String.format( "%.2f", mProduct.getPrice() )  );
-
-
-        Log.d(TAG, "EVALUATES TO => [" + ( mProduct.getOldPrice() > 0 ) + "]   OldPrice: [" + mProduct.getOldPrice() + "]" );
 
         if( mProduct.getOldPrice() > 0 ){
             holder.mTvOldPrice.setText( "£ " + String.format( "%.2f", mProduct.getOldPrice() ) );

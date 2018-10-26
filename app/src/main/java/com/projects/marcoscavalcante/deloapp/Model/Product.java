@@ -1,6 +1,7 @@
 package com.projects.marcoscavalcante.deloapp.Model;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -154,6 +155,16 @@ public class Product implements Parcelable {
         contentValues.put( FavouriteEntry.COLUMN_STOCK, this.getStock());
 
         return contentValues;
+    }
+
+
+    public Product(Cursor cursor){
+        this.productId  = cursor.getInt( cursor.getColumnIndex( FavouriteEntry.COLUMN_ID ) );
+        this.stock      = cursor.getInt( cursor.getColumnIndex( FavouriteEntry.COLUMN_STOCK ) );
+        this.price      = cursor.getFloat( cursor.getColumnIndex( FavouriteEntry.COLUMN_PRICE ) );
+        this.oldPrice   = cursor.getFloat( cursor.getColumnIndex( FavouriteEntry.COLUMN_OLD_PRICE ) );
+        this.category   = cursor.getString( cursor.getColumnIndex( FavouriteEntry.COLUMN_NAME ) );
+        this.name       = cursor.getString( cursor.getColumnIndex( FavouriteEntry.COLUMN_NAME ) );
     }
 
 }
