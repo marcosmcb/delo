@@ -19,9 +19,11 @@
     <!-- DRAWER -->
     <string name="menu_subheader_men">MEN</string>
     <string name="menu_subheader_women">WOMEN</string>
+    <string name="menu_subheader_all">PRODUCTS</string>
     <string name="menu_item_casual">CASUALWEAR</string>
     <string name="menu_item_formal">FORMALWEAR</string>
     <string name="menu_item_foot">FOOTWEAR</string>
+    <string name="menu_item_all">ALL PRODUCTS</string>
 
 
     <!-- BOTTOM NAVIGATION MENU -->
@@ -34,9 +36,28 @@
     <string name="btn_add_cart">ADD TO CART</string>
     <string name="btn_remove">REMOVE</string>
     <string name="btn_add_fav">ADD TO FAVOURITE</string>
+    <string name="btn_remove_fav">REMOVE FROM FAVOURITE</string>
 
     <!-- MESSAGES -->
     <string name="message_out_of_stock">OUT OF STOCK</string>
+
+
+    <!-- PRODUCT DETAIL -->
+    <string name="stock_label_product">Quantity</string>
+    <string name="category_label_product">Category</string>
+
+
+    <!-- CATEGORIES -->
+    <string name="men_footwear">Men\'s Footwear</string>
+    <string name="men_casualwear">Men\'s Casualwear</string>
+    <string name="men_formalwear">Men\'s Formalwear</string>
+
+    <string name="women_footwear">Women\'s Footwear</string>
+    <string name="women_casualwear">Women\'s Casualwear</string>
+    <string name="women_formalwear">Women\'s Formalwear</string>
+
+    <string name="all_products"></string>
+
 
 
 </resources>

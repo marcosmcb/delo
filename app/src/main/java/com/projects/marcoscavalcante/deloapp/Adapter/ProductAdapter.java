@@ -20,6 +20,7 @@ import com.projects.marcoscavalcante.deloapp.Utils.Pictures;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -83,7 +84,35 @@ public class ProductAdapter extends RecyclerView.Adapter< ProductAdapter.Product
 
     @Override
     public Filter getFilter() {
-        return null;
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                String searchString = constraint.toString();
+                mProductsFiltered = mProducts;
+
+                if( searchString.isEmpty() ){
+                    mProductsFiltered = mProducts;
+                } else {
+                    ArrayList<Product> filteredList = new ArrayList<>();
+                    for(Product product : mProductsFiltered){
+                        if( product.getCategory().toLowerCase().contains( searchString.toLowerCase() ) ) {
+                            filteredList.add( product );
+                        }
+                    }
+                    mProductsFiltered = filteredList;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = mProductsFiltered;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                mProductsFiltered = (ArrayList<Product>) results.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 
     public interface Listener{

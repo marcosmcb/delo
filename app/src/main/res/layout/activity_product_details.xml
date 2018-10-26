@@ -107,6 +107,7 @@
             android:textColor="@android:color/black"
             android:textSize="@dimen/tv_product_details_common"
             android:textStyle="bold"
+            android:text="@string/category_label_product"
             tools:text="Category" />
 
         <TextView
@@ -136,6 +137,7 @@
             android:textColor="@android:color/black"
             android:textSize="@dimen/tv_product_details_common"
             android:textStyle="bold"
+            android:text="@string/stock_label_product"
             tools:text="Quantity" />
 
         <TextView
@@ -154,7 +156,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/product_details_margin"
-        android:drawableLeft="@drawable/ic_cart_white"
+        android:drawableLeft="@drawable/ic_cart"
         android:backgroundTint="@color/colorAccent"
         android:textColor="@color/colortTextOnGreen"
         android:text="@string/btn_add_cart" />

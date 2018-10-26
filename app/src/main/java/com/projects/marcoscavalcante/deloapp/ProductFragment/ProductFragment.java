@@ -11,6 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.projects.marcoscavalcante.deloapp.Adapter.ProductAdapter;
+import com.projects.marcoscavalcante.deloapp.Main.MainActivity;
 import com.projects.marcoscavalcante.deloapp.Model.Product;
 import com.projects.marcoscavalcante.deloapp.ProductDetailActivity.ProductDetailActivity;
 import com.projects.marcoscavalcante.deloapp.R;
@@ -48,6 +49,7 @@ public class ProductFragment extends BaseFragment implements ProductsContract.Vi
     }
 
     private void bindViewFromActivity() {
+        ( (MainActivity) getActivity()).setDrawableIndicator(true);
         mProgressBar = getActivity().findViewById(R.id.pb_products_fragment);
     }
 
@@ -101,5 +103,11 @@ public class ProductFragment extends BaseFragment implements ProductsContract.Vi
     @Override
     public void onItemClicked(Product product) {
         mPresenter.onItemClicked(product);
+    }
+
+    public void filterItemsByCategory(String category){
+        if(mRecyclerView.getAdapter() != null) {
+            ((ProductAdapter) mRecyclerView.getAdapter()).getFilter().filter(category);
+        }
     }
 }

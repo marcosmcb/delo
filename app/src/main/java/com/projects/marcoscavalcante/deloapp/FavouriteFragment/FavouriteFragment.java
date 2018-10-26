@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.projects.marcoscavalcante.deloapp.Main.MainActivity;
 import com.projects.marcoscavalcante.deloapp.R;
 import com.projects.marcoscavalcante.deloapp.Utils.BaseFragment;
 
@@ -30,7 +31,7 @@ public class FavouriteFragment extends BaseFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind( FavouriteFragment.this, mRootView );
-
+        ( (MainActivity) getActivity()).setDrawableIndicator(false);
     }
 
     @Override

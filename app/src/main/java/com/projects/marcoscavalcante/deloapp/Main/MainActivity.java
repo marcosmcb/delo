@@ -1,4 +1,4 @@
-package com.projects.marcoscavalcante.deloapp.MainActivity;
+package com.projects.marcoscavalcante.deloapp.Main;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,7 +11,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.projects.marcoscavalcante.deloapp.CartFragment.CartFragment;
 import com.projects.marcoscavalcante.deloapp.FavouriteFragment.FavouriteFragment;
@@ -40,6 +42,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ProgressBar mProgressBar;
 
     private static final String TAG = MainActivity.class.getName();
+    private ActionBarDrawerToggle mToggle;
+    private BaseFragment mCurrentFragment;
 
 
     @Override
@@ -52,16 +56,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar,
+        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
 
-        mDrawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
+        mDrawerLayout.addDrawerListener(mToggle);
+        mToggle.syncState();
+
+
 
         mNavigationView.setNavigationItemSelectedListener(this);
         setBottomNavListener();
 
-        setFragment( new ProductFragment() );
+        mCurrentFragment = new ProductFragment();
+        setFragment( mCurrentFragment );
+    }
+
+
+
+    public void setDrawableIndicator(boolean isEnabled){
+        mToggle.setDrawerIndicatorEnabled(isEnabled);
+        mToggle.syncState();
     }
 
 
@@ -108,9 +122,41 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
 
+        switch( id ){
+
+            case R.id.nav_men_footwear:
+                sendCategory( getString( R.string.men_footwear ) );
+                break;
+            case R.id.nav_men_casualwear:
+                sendCategory( getString( R.string.men_casualwear ) );
+                break;
+            case R.id.nav_men_formalwear:
+                sendCategory( getString( R.string.men_formalwear ) );
+                break;
+
+            case R.id.nav_women_footwear:
+                sendCategory( getString( R.string.women_footwear ) );
+                break;
+            case R.id.nav_women_casualwear:
+                sendCategory( getString( R.string.women_casualwear ) );
+                break;
+            case R.id.nav_women_formalwear:
+                sendCategory( getString( R.string.women_formalwear ) );
+                break;
+            case R.id.nav_all:
+                sendCategory( getString( R.string.all_products ) );
+                break;
+        }
+
 
         mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void sendCategory(String category) {
+        if(this.mCurrentFragment instanceof ProductFragment){
+            ((ProductFragment) mCurrentFragment).filterItemsByCategory( category );
+        }
     }
 
 
@@ -139,6 +185,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
     public void setFragment(BaseFragment fragment) {
+        mCurrentFragment = fragment;
+
         getSupportFragmentManager()
                 .beginTransaction()
                 .setCustomAnimations( R.animator.slide_in_left, R.animator.slide_out_right, 0, 0 )

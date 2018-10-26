@@ -1,6 +1,5 @@
 package com.projects.marcoscavalcante.deloapp.ProductDetailActivity;
 
-import android.content.Intent;
 
 public interface ProductDetailContract {
 
@@ -12,5 +11,7 @@ public interface ProductDetailContract {
         void setProductStock(int quantity);
         void setProductCategory(String category);
         void setActionBarTitle(String productName);
+        void showMessage(String message);
+        void setIsFavourite(boolean isFavourite);
     }
 }

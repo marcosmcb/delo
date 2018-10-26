@@ -1,10 +1,12 @@
 package com.projects.marcoscavalcante.deloapp.Model;
 
+import android.content.ContentValues;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.projects.marcoscavalcante.deloapp.Data.FavouriteContract.FavouriteEntry;
 
 public class Product implements Parcelable {
 
@@ -138,4 +140,20 @@ public class Product implements Parcelable {
                 ", oldPrice:" + oldPrice +
                 ", stock: " + stock + "}";
     }
+
+
+    public ContentValues getContentValues( )
+    {
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put( FavouriteEntry.COLUMN_ID, this.getProductId());
+        contentValues.put( FavouriteEntry.COLUMN_NAME, this.getName());
+        contentValues.put( FavouriteEntry.COLUMN_CATEGORY, this.getCategory());
+        contentValues.put( FavouriteEntry.COLUMN_PRICE, this.getPrice());
+        contentValues.put( FavouriteEntry.COLUMN_OLD_PRICE, this.getOldPrice());
+        contentValues.put( FavouriteEntry.COLUMN_STOCK, this.getStock());
+
+        return contentValues;
+    }
+
 }

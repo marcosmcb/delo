@@ -37,4 +37,13 @@
         </menu>
     </item>
 
+    <item android:title="@string/menu_subheader_all">
+        <menu>
+            <item
+                android:id="@+id/nav_all"
+                android:icon="@drawable/list_black"
+                android:title="@string/menu_item_all" />
+        </menu>
+    </item>
+
 </menu>

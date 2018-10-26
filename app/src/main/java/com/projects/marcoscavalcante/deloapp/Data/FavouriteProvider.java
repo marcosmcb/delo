@@ -159,7 +159,7 @@ public class FavouriteProvider extends ContentProvider {
         }
         else
         {
-            throw new android.database.SQLException("Failed to insert row into " + tableUri);
+            return null;
         }
     }
 }
