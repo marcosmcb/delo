@@ -21,6 +21,8 @@ import com.projects.marcoscavalcante.deloapp.ProductFragment.ProductFragment;
 import com.projects.marcoscavalcante.deloapp.R;
 import com.projects.marcoscavalcante.deloapp.Utils.BaseFragment;
 
+import java.util.HashMap;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -88,6 +90,10 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     public void addProductToCart(Product product){
         mPresenter.addProductToCart( product );
+    }
+
+    public HashMap<Integer, Product> retrieveCart(){
+        return mPresenter.retrieveCart();
     }
 
     public void setDrawableIndicator(boolean isEnabled){
