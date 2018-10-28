@@ -2,6 +2,7 @@ package com.projects.marcoscavalcante.deloapp.Main;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
@@ -10,6 +11,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ProgressBar;
@@ -20,6 +22,9 @@ import com.projects.marcoscavalcante.deloapp.Model.Product;
 import com.projects.marcoscavalcante.deloapp.ProductFragment.ProductFragment;
 import com.projects.marcoscavalcante.deloapp.R;
 import com.projects.marcoscavalcante.deloapp.Utils.BaseFragment;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -64,8 +69,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
 
-
-
         mNavigationView.setNavigationItemSelectedListener(this);
         setBottomNavListener();
 
@@ -73,10 +76,26 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
             mPresenter = new MainPresenter(this);
         }
 
+        if(savedInstanceState != null){
+            onRestoreInstanceState(savedInstanceState);
+        }
+
         mCurrentFragment = new ProductFragment();
         setFragment( mCurrentFragment );
 
         checkForProduct( getIntent() );
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        mPresenter.addProductListToCart( savedInstanceState.<Product>getParcelableArrayList( getString(R.string.cart_array) ) );
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelableArrayList( getString(R.string.cart_array), retrieveCart() );
     }
 
     public void checkForProduct(Intent intent) {
@@ -90,6 +109,10 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         mPresenter.addProductToCart( product );
     }
 
+    public ArrayList<Product> retrieveCart(){
+        return mPresenter.retrieveCart();
+    }
+
     public void setDrawableIndicator(boolean isEnabled){
         mToggle.setDrawerIndicatorEnabled(isEnabled);
         mToggle.syncState();
@@ -98,12 +121,15 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     @Override
     protected void onDestroy() {
+        Log.d( TAG, "Destroy Activity" );
+        mPresenter.onDestroy();
         super.onDestroy();
     }
 
 
     @Override
     protected void onResume() {
+        Log.d( TAG, "***** Resume Activity *****" );
         super.onResume();
     }
 

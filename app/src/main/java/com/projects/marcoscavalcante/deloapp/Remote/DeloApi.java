@@ -21,8 +21,8 @@ public interface DeloApi {
     Observable<List<Product>> getProducts();
 
     @POST("/cart")
-    Observable<Cart> addProduct(@Body Cart load);
+    Observable<Cart> addProduct(@Body int productId);
 
     @DELETE("/cart/{id}")
-    Observable<Cart> removeProduct(@Body Cart load);
+    Observable<Cart> removeProduct(@Body int cartId);
 }

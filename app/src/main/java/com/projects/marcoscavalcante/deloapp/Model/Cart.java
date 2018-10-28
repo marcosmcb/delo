@@ -1,18 +1,21 @@
 package com.projects.marcoscavalcante.deloapp.Model;
 
-import java.util.HashMap;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class Cart {
 
+    @SerializedName("cartId")
+    @Expose
     private int cartId;
-    private HashMap<Product, Integer> products;
 
-    public Cart() {
-    }
+    @SerializedName("productId")
+    @Expose
+    private int productId;
 
-    public Cart(int cartId, HashMap<Product, Integer> products) {
+    public Cart(int cartId, int productId) {
         this.cartId = cartId;
-        this.products = products;
+        this.productId = productId;
     }
 
     public int getCartId() {
@@ -23,11 +26,17 @@ public class Cart {
         this.cartId = cartId;
     }
 
-    public HashMap<Product, Integer> getProducts() {
-        return products;
+    public int getProductId() {
+        return productId;
     }
 
-    public void setProducts(HashMap<Product, Integer> products) {
-        this.products = products;
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
+
+
+    @Override
+    public String toString() {
+        return "{ cartId: " + cartId + ", productId: " + productId + " }";
     }
 }

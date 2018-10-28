@@ -15,6 +15,7 @@
         android:layout_marginLeft="@dimen/rv_products_margin"
         android:layout_marginRight="@dimen/rv_products_margin"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_marginBottom="?attr/actionBarSize"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:layout_centerInParent="true" >
