@@ -16,6 +16,7 @@ import com.projects.marcoscavalcante.deloapp.R;
 import com.projects.marcoscavalcante.deloapp.Utils.Pictures;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import butterknife.BindView;
@@ -23,12 +24,12 @@ import butterknife.ButterKnife;
 
 public class ProductCartAdapter extends RecyclerView.Adapter<ProductCartAdapter.ProductCartViewHolder> {
 
-    private HashMap<Integer, Product> mProducts;
+    private ArrayList<Product> mProducts;
     private HashMap<Integer, Integer> mProductsQuantity;
     private static final String TAG = ProductCartAdapter.class.getName();
     private Listener mListener;
 
-    public ProductCartAdapter(HashMap<Integer, Product> products, Listener listener){
+    public ProductCartAdapter(ArrayList<Product> products, Listener listener){
         this.mProducts = products;
         this.mListener = listener;
         if( this.mProductsQuantity == null ){
@@ -38,9 +39,8 @@ public class ProductCartAdapter extends RecyclerView.Adapter<ProductCartAdapter.
 
     public void initializeQuantities(){
         mProductsQuantity = new HashMap<>();
-        for(Integer id : mProducts.keySet()){
-            mProductsQuantity.put( id, 1 );
-            Log.d( TAG, " ID " + id );
+        for(Product product : mProducts){
+            mProductsQuantity.put( product.getProductId(), 1 );
         }
     }
 
@@ -60,10 +60,7 @@ public class ProductCartAdapter extends RecyclerView.Adapter<ProductCartAdapter.
     @Override
     public void onBindViewHolder(@NonNull ProductCartViewHolder holder, int position) {
         final Product mProduct = mProducts.get( position );
-        final int currQuantity=0;
-        if( mProductsQuantity != null )
-           Log.d(TAG,"QUANTITY OF PRODUCT ID["+ mProduct.getProductId() +"] quantity=["+ mProduct.getStock() +"]" );
-        //currQuantity = mProductsQuantity.get(mProduct.getProductId());
+        final int currQuantity = mProductsQuantity.get(mProduct.getProductId());
 
         holder.mTvName.setText( mProduct.getName() );
         holder.mTvNewPrice.setText( "£ " + String.format( "%.2f", mProduct.getPrice() )  );
@@ -104,7 +101,7 @@ public class ProductCartAdapter extends RecyclerView.Adapter<ProductCartAdapter.
         });
 
 
-        holder.mTvQuantityCart.setText( mProductsQuantity.get( mProduct.getProductId() ) );
+        holder.mTvQuantityCart.setText( mProductsQuantity.get( mProduct.getProductId() ) + "" );
     }
 
     @Override

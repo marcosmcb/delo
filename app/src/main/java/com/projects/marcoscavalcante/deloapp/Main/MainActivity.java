@@ -21,6 +21,7 @@ import com.projects.marcoscavalcante.deloapp.ProductFragment.ProductFragment;
 import com.projects.marcoscavalcante.deloapp.R;
 import com.projects.marcoscavalcante.deloapp.Utils.BaseFragment;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import butterknife.BindView;
@@ -92,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         mPresenter.addProductToCart( product );
     }
 
-    public HashMap<Integer, Product> retrieveCart(){
+    public ArrayList<Product> retrieveCart(){
         return mPresenter.retrieveCart();
     }
 

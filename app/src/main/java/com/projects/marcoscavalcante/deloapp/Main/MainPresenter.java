@@ -1,29 +1,38 @@
 package com.projects.marcoscavalcante.deloapp.Main;
 
 import com.projects.marcoscavalcante.deloapp.Model.Product;
-
-import java.util.HashMap;
+import java.util.ArrayList;
 
 public class MainPresenter {
 
     private static final String TAG = MainPresenter.class.getName();
     private MainContract.View mMainView;
-    private HashMap<Integer, Product> mProducstInCart;
+    private ArrayList<Product> mProducstInCart;
 
     public MainPresenter(MainContract.View mainView){
         this.mMainView = mainView;
-        this.mProducstInCart = new HashMap<>();
+        this.mProducstInCart = new ArrayList<>();
     }
 
     public void addProductToCart(Product product){
         if(mMainView != null){
-            if( !mProducstInCart.containsKey( product.getProductId() ) ){
-                mProducstInCart.put( product.getProductId(), product );
+            if( !isProductInCart(product) ){
+                mProducstInCart.add( product );
             }
         }
     }
 
-    public HashMap<Integer, Product> retrieveCart(){
+
+    private boolean isProductInCart(Product productToBeInserted){
+        for(Product product : mProducstInCart){
+            if(productToBeInserted.getProductId() == product.getProductId() ){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public ArrayList<Product> retrieveCart(){
         return mProducstInCart;
     }
 }

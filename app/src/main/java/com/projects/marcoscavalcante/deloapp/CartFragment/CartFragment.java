@@ -18,6 +18,7 @@ import com.projects.marcoscavalcante.deloapp.Model.Product;
 import com.projects.marcoscavalcante.deloapp.R;
 import com.projects.marcoscavalcante.deloapp.Utils.BaseFragment;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import butterknife.BindView;
@@ -44,9 +45,9 @@ public class CartFragment extends BaseFragment implements CartContract.View, Pro
         ( (MainActivity) getActivity()).setDrawableIndicator(false);
 
 
-//        if(mPresenter == null) {
-//            mPresenter = new CartPresenter(this);
-//        }
+        if(mPresenter == null) {
+            mPresenter = new CartPresenter(this);
+        }
         setItems( ((MainActivity) getActivity()).retrieveCart() );
     }
 
@@ -56,7 +57,7 @@ public class CartFragment extends BaseFragment implements CartContract.View, Pro
         return R.layout.fragment_cart;
     }
 
-    public void setItems(HashMap<Integer, Product> productsCart) {
+    public void setItems(ArrayList<Product> productsCart) {
 
         if(productsCart == null){
             Log.d(TAG, "*** PRODUCTS IN CART ARE NULL ***" );
