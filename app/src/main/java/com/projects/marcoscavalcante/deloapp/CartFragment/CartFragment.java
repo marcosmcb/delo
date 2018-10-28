@@ -42,8 +42,6 @@ public class CartFragment extends BaseFragment implements CartContract.View, Pro
     Button mBtnCheckout;
 
     private ProgressBar mProgressBar;
-    private TextView mTextViewErrorMessage;
-    private SearchView mSearchView;
     private static final String TAG = CartFragment.class.getName();
     private CartPresenter mPresenter;
 
@@ -67,8 +65,7 @@ public class CartFragment extends BaseFragment implements CartContract.View, Pro
         mBtnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ( (ProductCartAdapter) mRecyclerView.getAdapter()).destroyCart();
-                updatePrice(0);
+                destroyCart();
             }
         });
 
@@ -76,10 +73,17 @@ public class CartFragment extends BaseFragment implements CartContract.View, Pro
             @Override
             public void onClick(View v) {
                 HashMap<Product, Integer> cart = ((ProductCartAdapter) mRecyclerView.getAdapter()).getCart();
-                mPresenter.sendCart( cart );
+
+                if(cart.size() == 0){
+                    showErrorMessage("There is nothing on the cart to be sent");
+                } else {
+                    mPresenter.sendCart(cart);
+                }
             }
         });
     }
+
+
 
 
     @Override
@@ -111,6 +115,16 @@ public class CartFragment extends BaseFragment implements CartContract.View, Pro
     }
 
     @Override
+    public void showErrorMessage(String msg) {
+        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showMessage(String msg) {
+        Toast.makeText(getContext(), msg, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
     public void showProgress() {
         mProgressBar.setVisibility(View.VISIBLE);
     }
@@ -118,6 +132,12 @@ public class CartFragment extends BaseFragment implements CartContract.View, Pro
     @Override
     public void hideProgress() {
         mProgressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void destroyCart() {
+        ( (ProductCartAdapter) mRecyclerView.getAdapter()).destroyCart();
+        updatePrice(0);
     }
 
     private void updateCartPrice() {
