@@ -44,6 +44,11 @@ public class ProductCartAdapter extends RecyclerView.Adapter<ProductCartAdapter.
         }
     }
 
+    public void destroyCart(){
+        this.mProducts = new ArrayList<>();
+        this.mProductsQuantity = new HashMap<>();
+        notifyDataSetChanged();
+    }
 
     public interface Listener{
         void onChange();

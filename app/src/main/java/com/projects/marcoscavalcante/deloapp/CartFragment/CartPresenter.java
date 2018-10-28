@@ -25,4 +25,8 @@ public class CartPresenter {
     }
 
 
+    public void sendCart(HashMap<Product, Integer> cart){
+
+    }
+
 }

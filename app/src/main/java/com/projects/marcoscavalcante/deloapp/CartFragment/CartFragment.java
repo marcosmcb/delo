@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,7 +35,13 @@ public class CartFragment extends BaseFragment implements CartContract.View, Pro
     @BindView(R.id.tv_price_cart)
     TextView mTvPriceCart;
 
-    private ProgressBar mProgressBarMainActivity;
+    @BindView(R.id.btn_cart_cancel)
+    Button mBtnCancel;
+
+    @BindView(R.id.btn_cart_checkout)
+    Button mBtnCheckout;
+
+    private ProgressBar mProgressBar;
     private TextView mTextViewErrorMessage;
     private SearchView mSearchView;
     private static final String TAG = CartFragment.class.getName();
@@ -45,12 +52,33 @@ public class CartFragment extends BaseFragment implements CartContract.View, Pro
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind( CartFragment.this, mRootView );
         ( (MainActivity) getActivity()).setDrawableIndicator(false);
-
+        mProgressBar = getActivity().findViewById(R.id.pb_products_fragment);
 
         if(mPresenter == null) {
             mPresenter = new CartPresenter(this);
         }
         setItems( ((MainActivity) getActivity()).retrieveCart() );
+        
+        setListeners();
+    }
+
+    private void setListeners() {
+
+        mBtnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ( (ProductCartAdapter) mRecyclerView.getAdapter()).destroyCart();
+                updatePrice(0);
+            }
+        });
+
+        mBtnCheckout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                HashMap<Product, Integer> cart = ((ProductCartAdapter) mRecyclerView.getAdapter()).getCart();
+                mPresenter.sendCart( cart );
+            }
+        });
     }
 
 
@@ -66,6 +94,7 @@ public class CartFragment extends BaseFragment implements CartContract.View, Pro
         updateCartPrice();
     }
 
+
     @Override
     public void onChange() {
         updateCartPrice();
@@ -79,6 +108,16 @@ public class CartFragment extends BaseFragment implements CartContract.View, Pro
     @Override
     public void updatePrice(float newPrice) {
         mTvPriceCart.setText( "£ " + String.format("%.2f", newPrice) );
+    }
+
+    @Override
+    public void showProgress() {
+        mProgressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideProgress() {
+        mProgressBar.setVisibility(View.GONE);
     }
 
     private void updateCartPrice() {
