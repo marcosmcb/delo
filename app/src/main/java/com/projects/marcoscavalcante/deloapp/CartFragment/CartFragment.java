@@ -60,36 +60,29 @@ public class CartFragment extends BaseFragment implements CartContract.View, Pro
     }
 
     public void setItems(ArrayList<Product> productsCart) {
-
-        if(productsCart == null){
-            Log.d(TAG, "*** PRODUCTS IN CART ARE NULL ***" );
-        } else {
-            Log.d(TAG, "*** PRODUCTS ARE THERE ***" );
-            Log.d(TAG, productsCart.toString());
-        }
-
         mRecyclerView.setLayoutManager( new LinearLayoutManager( getContext() ));
         mRecyclerView.setAdapter( new ProductCartAdapter( productsCart, this ));
         mRecyclerView.getAdapter().notifyDataSetChanged();
+        updateCartPrice();
     }
 
     @Override
-    public void onProductPlus(Product product) {
-        Toast.makeText(getContext(), "Product has been added", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onProductSub(Product product) {
-        Toast.makeText(getContext(), "Product has been subtracted", Toast.LENGTH_SHORT).show();
+    public void onChange() {
+        updateCartPrice();
     }
 
     @Override
     public void onError(String message) {
-        Toast.makeText(getContext(), "Error while changing quantity", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void setItems() {
+    public void updatePrice(float newPrice) {
+        mTvPriceCart.setText( "£ " + String.format("%.2f", newPrice) );
+    }
 
+    private void updateCartPrice() {
+        HashMap<Product, Integer> cart = ( (ProductCartAdapter) mRecyclerView.getAdapter()).getCart();
+        mPresenter.calculatePriceTotal( cart );
     }
 }

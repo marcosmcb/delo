@@ -46,9 +46,16 @@ public class ProductCartAdapter extends RecyclerView.Adapter<ProductCartAdapter.
 
 
     public interface Listener{
-        void onProductPlus( Product product);
-        void onProductSub(Product product);
+        void onChange();
         void onError(String message);
+    }
+
+    public HashMap<Product, Integer> getCart(){
+        HashMap<Product, Integer> productsCart = new HashMap<>();
+        for( Product prod : mProducts ){
+            productsCart.put( prod, mProductsQuantity.get(prod.getProductId()) );
+        }
+        return productsCart;
     }
 
 
@@ -58,7 +65,7 @@ public class ProductCartAdapter extends RecyclerView.Adapter<ProductCartAdapter.
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProductCartViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ProductCartViewHolder holder, final int position) {
         final Product mProduct = mProducts.get( position );
         final int currQuantity = mProductsQuantity.get(mProduct.getProductId());
 
@@ -70,6 +77,7 @@ public class ProductCartAdapter extends RecyclerView.Adapter<ProductCartAdapter.
             holder.mTvOldPrice.setPaintFlags( holder.mTvOldPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         }
 
+        holder.mTvQuantityCart.setText( mProductsQuantity.get( mProduct.getProductId() ) + "" );
 
         Picasso
                 .get()
@@ -80,27 +88,41 @@ public class ProductCartAdapter extends RecyclerView.Adapter<ProductCartAdapter.
         holder.mBtnPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if( (currQuantity+1) <= mProduct.getStock() ){
-                    mProductsQuantity.put( mProduct.getProductId(), currQuantity+1 );
-                } else {
-                    mListener.onError("Sorry, Not enough in stock!");
-                }
+            if( (currQuantity+1) <= mProduct.getStock() ){
+                mProductsQuantity.put( mProduct.getProductId(), currQuantity+1 );
+                holder.mTvQuantityCart.setText( (currQuantity+1) + "" );
+                notifyItemChanged( position );
+                mListener.onChange();
+            } else {
+                mListener.onError("Sorry, Only " + mProduct.getStock() + " in stock!");
+            }
             }
         });
 
         holder.mBtnSub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if( (currQuantity-1) > 0 ){
-                    mProductsQuantity.put( mProduct.getProductId(), currQuantity-1 );
-                } else {
-                    mListener.onProductSub(mProduct);
-                }
+            if( (currQuantity-1) > 0 ){
+                mProductsQuantity.put( mProduct.getProductId(), currQuantity-1 );
+                holder.mTvQuantityCart.setText( (currQuantity-1) + "" );
+                notifyItemChanged( position );
+                mListener.onChange();
+            } else {
+                mListener.onError("Sorry, you can't have 0 quantity");
+            }
             }
         });
 
+        holder.mBtnRemove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mProductsQuantity.remove( mProduct.getProductId() );
+                mProducts.remove( position );
+                notifyDataSetChanged();
+                mListener.onChange();
+            }
+        });
 
-        holder.mTvQuantityCart.setText( mProductsQuantity.get( mProduct.getProductId() ) + "" );
     }
 
     @Override
@@ -131,6 +153,9 @@ public class ProductCartAdapter extends RecyclerView.Adapter<ProductCartAdapter.
 
         @BindView(R.id.btn_sub_cart)
         Button mBtnSub;
+
+        @BindView(R.id.btn_remove_product_cart)
+        Button mBtnRemove;
 
         public ProductCartViewHolder(View itemView) {
             super(itemView);

@@ -22,6 +22,16 @@ public class MainPresenter {
         }
     }
 
+    public void addProductListToCart(ArrayList<Product> productArrayList){
+        if(mMainView != null){
+            for(Product product : productArrayList){
+                if( !isProductInCart(product) ){
+                    mProducstInCart.add( product );
+                }
+            }
+        }
+    }
+
 
     private boolean isProductInCart(Product productToBeInserted){
         for(Product product : mProducstInCart){

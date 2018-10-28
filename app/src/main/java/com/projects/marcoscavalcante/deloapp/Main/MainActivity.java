@@ -2,6 +2,7 @@ package com.projects.marcoscavalcante.deloapp.Main;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
@@ -68,8 +69,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
 
-
-
         mNavigationView.setNavigationItemSelectedListener(this);
         setBottomNavListener();
 
@@ -77,10 +76,26 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
             mPresenter = new MainPresenter(this);
         }
 
+        if(savedInstanceState != null){
+            onRestoreInstanceState(savedInstanceState);
+        }
+
         mCurrentFragment = new ProductFragment();
         setFragment( mCurrentFragment );
 
         checkForProduct( getIntent() );
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        mPresenter.addProductListToCart( savedInstanceState.<Product>getParcelableArrayList( getString(R.string.cart_array) ) );
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelableArrayList( getString(R.string.cart_array), retrieveCart() );
     }
 
     public void checkForProduct(Intent intent) {
@@ -114,6 +129,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     @Override
     protected void onResume() {
+        Log.d( TAG, "***** Resume Activity *****" );
         super.onResume();
     }
 

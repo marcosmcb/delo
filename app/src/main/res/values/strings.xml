@@ -37,6 +37,11 @@
     <string name="btn_remove">REMOVE</string>
     <string name="btn_add_fav">ADD TO FAVOURITE</string>
     <string name="btn_remove_fav">REMOVE FROM FAVOURITE</string>
+    <string name="btn_cart_plus">Add</string>
+    <string name="btn_cart_rem">Sub</string>
+    <string name="btn_cart_delete">REMOVE</string>
+    <string name="btn_cart_checkout">CHECKOUT</string>
+    <string name="btn_cart_cancel">CANCEL</string>
 
     <!-- MESSAGES -->
     <string name="message_out_of_stock">OUT OF STOCK</string>
@@ -63,6 +68,6 @@
 
 
     <string name="order_total">Order Total</string>
-
+    <string name="cart_array">CART</string>
 
 </resources>

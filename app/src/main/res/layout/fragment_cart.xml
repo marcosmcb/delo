@@ -20,6 +20,7 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center">
@@ -57,6 +58,37 @@
                 android:layout_centerInParent="true" >
 
             </android.support.v7.widget.RecyclerView>
+
+            <RelativeLayout
+                android:orientation="horizontal"
+                android:layout_margin="20dp"
+                android:layout_marginBottom="?attr/actionBarSize"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/btn_cart_checkout"
+                    android:layout_height="wrap_content"
+                    android:layout_width="125dp"
+                    android:drawableTop="@drawable/ic_cart"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:backgroundTint="@color/colorAccent"
+                    android:text="@string/btn_cart_checkout"
+                    android:textColor="@color/colortTextOnGreen" />
+
+                <Button
+                    android:id="@+id/btn_cart_cancel"
+                    android:layout_width="125dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:drawableTop="@drawable/ic_cancel"
+                    android:backgroundTint="@android:color/white"
+                    android:text="@string/btn_cart_cancel"
+                    android:textColor="@color/colorAccent" />
+
+            </RelativeLayout>
 
 
         </LinearLayout>
