@@ -4,12 +4,14 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.projects.marcoscavalcante.deloapp.Adapter.ProductCartAdapter;
 import com.projects.marcoscavalcante.deloapp.Adapter.ProductFavouriteAdapter;
@@ -66,24 +68,24 @@ public class CartFragment extends BaseFragment implements CartContract.View, Pro
             Log.d(TAG, productsCart.toString());
         }
 
-        mRecyclerView.setLayoutManager( new GridLayoutManager( getContext(), getNumberOfColumns() ));
+        mRecyclerView.setLayoutManager( new LinearLayoutManager( getContext() ));
         mRecyclerView.setAdapter( new ProductCartAdapter( productsCart, this ));
         mRecyclerView.getAdapter().notifyDataSetChanged();
     }
 
     @Override
     public void onProductPlus(Product product) {
-
+        Toast.makeText(getContext(), "Product has been added", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onProductSub(Product product) {
-
+        Toast.makeText(getContext(), "Product has been subtracted", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onError(String message) {
-
+        Toast.makeText(getContext(), "Error while changing quantity", Toast.LENGTH_SHORT).show();
     }
 
     @Override

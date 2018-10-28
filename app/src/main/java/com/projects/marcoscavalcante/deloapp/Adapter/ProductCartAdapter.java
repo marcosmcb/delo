@@ -85,7 +85,6 @@ public class ProductCartAdapter extends RecyclerView.Adapter<ProductCartAdapter.
                 } else {
                     mListener.onError("Sorry, Not enough in stock!");
                 }
-
             }
         });
 

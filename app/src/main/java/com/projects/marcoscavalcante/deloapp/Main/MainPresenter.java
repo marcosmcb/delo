@@ -35,4 +35,8 @@ public class MainPresenter {
     public ArrayList<Product> retrieveCart(){
         return mProducstInCart;
     }
+
+    public void onDestroy(){
+        mMainView = null;
+    }
 }
